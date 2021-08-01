@@ -2,21 +2,18 @@ package com.getnft.ui
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.getnft.data.model.response.Nft
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.getnft.data.util.NetworkResult
 import com.getnft.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), CheckoutListener {
@@ -55,7 +52,12 @@ class MainActivity : AppCompatActivity(), CheckoutListener {
     }
 
     private fun handleUI() {
-        binding.vpNft.adapter = nftAdapter
+
+        with(binding.rvNft){
+            layoutManager = LinearLayoutManager(this@MainActivity,LinearLayoutManager.VERTICAL,false)
+            adapter = nftAdapter
+        }
+        binding.rvNft.adapter = nftAdapter
     }
 
     override fun onCheckoutClick(url: String) {

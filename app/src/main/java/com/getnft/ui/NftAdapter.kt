@@ -56,7 +56,7 @@ class NftAdapter(val checkoutListener: CheckoutListener) : RecyclerView.Adapter<
                 binding.price.isVisible = false
             }
 
-            binding.btnCheckout.setOnClickListener {
+            binding.root.setOnClickListener {
                 item.externalUrl?.let { url -> checkoutListener.onCheckoutClick(url) }
             }
 
